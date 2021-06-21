@@ -26,4 +26,37 @@ table td.icon{
   padding-left: 30px;
 }
 
+.text-center {
+  text-align: center;;
+}
+.inline-flex{
+  width: 1706px;
+  display: inline-flex;
+}
 
+.default-form{
+  width: 33%;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.priod-form{
+  width: 33%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.task-form{
+  width: 31%;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.add-form{
+  margin-top: 70px;
+}
+
+.add-btn {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
