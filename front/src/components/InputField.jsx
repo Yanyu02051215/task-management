@@ -1,12 +1,22 @@
 import React from 'react';
+import TextField from "@material-ui/core/TextField"
+import '../assets/style.css';
 
 const InputField = (props) => {
   return (
-    <div className={props.className}>
-      <label>{props.label}</label>
-      <input placeholder="入力しよう"></input>
-    </div>
+    <TextField
+      fullWidth={props.fullWidth}
+      label={props.label}
+      margin="dense"
+      multiline={props.multiline}
+      required={props.required}
+      rows={props.rows}
+      value={props.value}
+      type={props.type}
+      onChange={props.onChange}
+      className={props.className}
+    />
   )
 }
 
-export default InputField;
+export default InputField
