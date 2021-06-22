@@ -31,3 +31,24 @@ func (dao TaskDao) CreateTask(t Task) (err error) {
 	}
 	return err
 }
+
+func (dao TaskDao) GetTaskLists() (tasks []Task, err error) {
+	cmd := `select department, grade, occupation, period, job_description from tasks`
+
+	rows, err := Db.Query(cmd)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for rows.Next() {
+		var task Task
+		if err := rows.Scan(&task.Department, &task.Grade, &task.Occupation, &task.Period, &task.JobDescription); err != nil {
+			log.Fatal(err)
+		}
+		tasks = append(tasks, task)
+	}
+	rows.Close()
+
+	return tasks, err
+}

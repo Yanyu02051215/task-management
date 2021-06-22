@@ -26,3 +26,20 @@ func (t TaskController) CreateTask() gin.HandlerFunc {
 		})
 	}
 }
+
+func (t TaskController) GetTasks() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		dao := models.TaskDao{}
+		tasks, err := dao.GetTaskLists()
+		if err != nil {
+			log.Print(err)
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"message": err,
+			})
+		}
+		c.JSON(http.StatusOK, gin.H{
+			"message": tasks,
+		})
+	}
+}
