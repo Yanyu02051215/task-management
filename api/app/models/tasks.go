@@ -4,6 +4,9 @@ import (
 	"log"
 )
 
+type TaskDao struct {
+}
+
 type Task struct {
 	ID             int
 	Department     string
@@ -13,7 +16,7 @@ type Task struct {
 	JobDescription string
 }
 
-func (t *Task) CreateTask() (err error) {
+func (dao TaskDao) CreateTask(t Task) (err error) {
 	cmd := `insert into tasks (
 		department,
 		grade,

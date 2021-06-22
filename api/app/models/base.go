@@ -16,5 +16,4 @@ func init() {
 	if err != nil {
 		log.Panicln(err)
 	}
-	defer Db.Close()
 }
