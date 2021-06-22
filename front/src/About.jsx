@@ -1,12 +1,15 @@
 import React, {useState, useCallback} from 'react';
+import {useDispatch} from "react-redux";
+import taskService from './services/tasks';
 import InputField from './components/InputField'
 import SelectBox from './components/SelectBox'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import './assets/style.css';
 
 const About = () => {
+  // const dispatch = useDispatch();
   const [priod, setPriod] = useState(""),
-        [count, setCount] = useState(10),
+        [count, setCount] = useState(1),
         [task, setTask] = useState(""),
         [department, setDepartment] = useState(""),
         [grade, setGrade] = useState(""),
@@ -37,6 +40,21 @@ const About = () => {
     const inputTask = useCallback((event) => {
       setTask(event.target.value)
       }, [setTask])
+
+    const add = async (e) => {
+      e.preventDefault();
+
+      // try {
+      //   const response = await blogService.save(department, grade, occupation, priod, task);
+      //   const group = await response.data;
+      //   await createGroupAction(group);
+      //   if (group) {
+      //     setRedirect(true);
+      //   }
+      // } catch (error) {
+      //   console.log(error);
+      // }
+    };
 
     const default_form = [];
     for (let i = 0; i < count; i += 1) {
