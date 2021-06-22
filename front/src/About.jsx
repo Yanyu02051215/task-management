@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {useDispatch} from "react-redux";
+// import {useDispatch} from "react-redux";
 import taskService from './services/tasks';
 import InputField from './components/InputField'
 import SelectBox from './components/SelectBox'
@@ -7,7 +7,6 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import './assets/style.css';
 
 const About = () => {
-  // const dispatch = useDispatch();
   const [priod, setPriod] = useState(""),
         [count, setCount] = useState(1),
         [task, setTask] = useState(""),
@@ -44,16 +43,11 @@ const About = () => {
     const add = async (e) => {
       e.preventDefault();
 
-      // try {
-      //   const response = await blogService.save(department, grade, occupation, priod, task);
-      //   const group = await response.data;
-      //   await createGroupAction(group);
-      //   if (group) {
-      //     setRedirect(true);
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      try {
+        taskService.save(department, grade, occupation, priod, task);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const default_form = [];
@@ -95,7 +89,7 @@ const About = () => {
         <AddCircleIcon className="add-btn" onClick={countUp}/>
       </div>
       <div class="text-center">
-        <button className="text-center">送信</button>
+        <button className="text-center" onClick={add}>送信</button>
       </div>
     </>
   )
