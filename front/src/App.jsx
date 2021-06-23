@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import About from './About';
-import Home from './Home';
+import TaskForm from './template/TaskForm';
+import TaskList from './template/TaskList';
 
 class App extends Component {
   render() {
@@ -9,8 +9,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route exact path='/' component={Home}/>
-            <Route path='/About' component={About}/>
+            <Route exact path='/' component={TaskList}/>
+            <Route path='/Form' component={TaskForm}/>
           </div>
         </Router>
       </div>

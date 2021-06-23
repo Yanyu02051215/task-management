@@ -1,13 +1,13 @@
 import React, {useState, useCallback} from 'react';
 import { useDispatch } from 'react-redux';
-import taskService from './services/tasks';
-import InputField from './components/InputField'
-import SelectBox from './components/SelectBox'
+import taskService from '../services/tasks';
+import InputField from '../components/InputField'
+import SelectBox from '../components/SelectBox'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { addTasks } from './redux/actions/tasks';
-import './assets/style.css';
+import { addTasks } from '../redux/actions/tasks';
+import '../assets/style.css';
 
-const About = () => {
+const TaskForm = () => {
   const [priod, setPriod] = useState(""),
         [count, setCount] = useState(1),
         [task, setTask] = useState(""),
@@ -102,4 +102,4 @@ const About = () => {
 }
 
 
-export default About;
+export default TaskForm;

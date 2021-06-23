@@ -1,21 +1,21 @@
 import React, {useEffect} from 'react';
-import taskService from './services/tasks';
-import './assets/style.css';
+import taskService from '../services/tasks';
+import '../assets/style.css';
 
-const Home = () => {
+const TaskList = () => {
 
-  useEffect(() => {
-    let mounted = false;
-    const f = async () => {
-      if (!mounted) {
-        taskService.findAll();
-      }
-    };
-    f();
-    return () => {
-      mounted = true;
-    };
-  }, []);
+  // useEffect(() => {
+  //   let mounted = false;
+  //   const f = async () => {
+  //     if (!mounted) {
+  //       taskService.findAll();
+  //     }
+  //   };
+  //   f();
+  //   return () => {
+  //     mounted = true;
+  //   };
+  // }, []);
 
   return (
     <>
@@ -58,4 +58,4 @@ const Home = () => {
 }
 
 
-export default Home;
+export default TaskList;
