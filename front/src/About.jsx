@@ -1,9 +1,10 @@
 import React, {useState, useCallback} from 'react';
-// import {useDispatch} from "react-redux";
+import { useDispatch } from 'react-redux';
 import taskService from './services/tasks';
 import InputField from './components/InputField'
 import SelectBox from './components/SelectBox'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { addTasks } from './redux/actions/tasks';
 import './assets/style.css';
 
 const About = () => {
@@ -40,11 +41,16 @@ const About = () => {
       setTask(event.target.value)
       }, [setTask])
 
+    const dispatch = useDispatch();
+    const createGroupAction = (group) => dispatch(addTasks(group));
+
     const add = async (e) => {
       e.preventDefault();
 
       try {
-        taskService.save(department, grade, occupation, priod, task);
+        const response = taskService.save(department, grade, occupation, priod, task);
+        const group = await response.data;
+        await createGroupAction(group);
       } catch (error) {
         console.log(error);
       }
@@ -68,7 +74,7 @@ const About = () => {
   return (
     <>
       <h2 className="text-center">顧問先業務一覧</h2>
-      <div>
+      <div className="inline">
         <InputField
           fullWidth={false} label={"部門"} multiline={false} required={true} rows={1}
           value={department} type={"text"} onChange={inputDepartment}

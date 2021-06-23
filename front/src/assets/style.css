@@ -29,8 +29,7 @@ table td.icon{
 .text-center {
   text-align: center;;
 }
-.inline-flex{
-  width: 1706px;
+.inline{
   display: inline-flex;
 }
 
