@@ -1,21 +1,33 @@
 import React, {useEffect} from 'react';
 import taskService from '../services/tasks';
+import { useDispatch, useSelector } from 'react-redux';
+// import { getTasks } from '../redux/selectors/tasks';
 import '../assets/style.css';
 
 const TaskList = () => {
+  const dispatch = useDispatch()
+  const selector = useSelector(state => state);
+  const { tasks } = useSelector((state) => state.tasks);
+  console.log({ tasks })
+  // const tasks = getTasks(selector);
+  const addTasksAction = (gs) => dispatch(addTasks(gs));
 
-  // useEffect(() => {
-  //   let mounted = false;
-  //   const f = async () => {
-  //     if (!mounted) {
-  //       taskService.findAll();
-  //     }
-  //   };
-  //   f();
-  //   return () => {
-  //     mounted = true;
-  //   };
-  // }, []);
+  useEffect(() => {
+    let mounted = false;
+    const f = async () => {
+      if (!mounted) {
+        const response = await blogService.findAll();
+        const { data } = response.data;
+        addTasksAction(data);
+      }
+    };
+    f();
+    return () => {
+      mounted = true;
+    };
+  }, []);
+
+
 
   return (
     <>

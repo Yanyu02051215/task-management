@@ -14,7 +14,7 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.String(200, "Hello Gin!!")
 	})
-	r.POST("/tasks", controller.TaskController{}.CreateTask())
-	r.GET("/tasks", controller.TaskController{}.GetTasks())
+	r.GET("/tasks", controller.TaskController{}.CreateTask())
+	// r.GET("/tasks", controller.TaskController{}.GetTasks())
 	r.Run()
 }

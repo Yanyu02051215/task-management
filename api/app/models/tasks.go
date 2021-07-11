@@ -1,7 +1,9 @@
 package models
 
 import (
+	"fmt"
 	"log"
+	"strings"
 )
 
 type TaskDao struct {
@@ -16,15 +18,27 @@ type Task struct {
 	JobDescription string
 }
 
-func (dao TaskDao) CreateTask(t Task) (err error) {
+func (dao TaskDao) CreateTask(ts []Task) (err error) {
+
+	var valuesSql []string
+	vals := []interface{}{}
+	i := 1
+	for _, t := range ts {
+		valuesSql = append(valuesSql, fmt.Sprintf("($%d, $%d, $%d, $%d, $%d)", i, i+1, i+2, i+3, i+4))
+		vals = append(vals, t.Department, t.Grade, t.Occupation, t.Period, t.JobDescription)
+		i += 5
+	}
+
 	cmd := `insert into tasks (
 		department,
 		grade,
 		occupation,
 		period,
-		job_description) values($1, $2, $3, $4, $5)`
+		job_description) values` + strings.Join(valuesSql, ", ")
+	fmt.Printf(cmd)
 
-	_, err = Db.Exec(cmd, t.Department, t.Grade, t.Occupation, t.Period, t.JobDescription)
+	// _, err = Db.Exec(cmd, t.Department, t.Grade, t.Occupation, t.Period, t.JobDescription)
+	_, err = Db.Exec(cmd, vals...)
 
 	if err != nil {
 		log.Panicln(err)
